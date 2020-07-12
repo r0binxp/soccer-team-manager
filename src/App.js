@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import store from './store'
+import Players from './components/Players'
+import { Provider } from 'react-redux'
+import Grid from '@material-ui/core/Grid'
+import Titulars from './components/Titulares'
+import Substitutes from './components/Substitutes'
+import { makeStyles } from '@material-ui/core/styles';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const useStyles = makeStyles({
+  title: {
+   textAlign: 'center',
+   fontSize: '40px',
+   fontFamily: 'Tahoma',
+  },
+  container: {
+    backgroundColor: '#efefef'
+  }
+ 
+});
+
+const App = () => {
+  const classes = useStyles();
+  return(
+  <Provider store={store}>
+    <Grid container className={classes.container}>
+      <Grid item md={12}>
+        <h1 className={classes.title}>Soccer Manager</h1>
+      </Grid>
+      <Grid item md={12}>
+        <Players/>  
+        <Titulars/> 
+        <Substitutes/> 
+      </Grid>
+    </Grid>
+  </Provider>
+  )
 }
 
 export default App;
